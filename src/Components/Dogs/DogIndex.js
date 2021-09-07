@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+// import { Button } from "reactstrap";
 
 
 class DogIndex extends Component {
@@ -10,30 +10,31 @@ class DogIndex extends Component {
         };
     }
 
-    fetchDogs() {
+    fetchDog() {
         const apiUrl = `https://dog.ceo/api/breeds/image/random`;
         fetch(apiUrl) 
         .then ((res) => res.json()
-        .then((data) => {
+        .then((json) => {
             this.setState({
-                dogPicture: data.message,
-            });
+                dogPicture: json.message, dogStatus: json.status});
+                console.log(json)
         }) 
-        .catch((error) => console.log(error))
+        .catch((err) => console.log(err))
         );
     }
+
     componentDidMount() {
-        this.fetchDogs();
+        this.fetchDog();
     }
 
     render() {
         return (
             <div>
-                <Button onCLick= {() => this.fetchDogs()}>
+                <button onClick= {() => this.fetchDog()}>
                 New Dog!
-                </Button>  
+                </button>  
                 <p>
-                    <img alt={this.state.dogPicture} src={this.state.dogPicture}></img>
+                <img alt={this.state.dogPicture} src={this.state.dogPicture}></img>
                 </p>          
             </div>
         );

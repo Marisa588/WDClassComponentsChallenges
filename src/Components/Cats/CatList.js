@@ -7,7 +7,7 @@ class CatList extends Component {
   render() {
     return (
       <div>
-        {this.props.cats.map(cat => <li>{cat}</li>)}
+        {this.props.cats.map(cats => <ul>{cats}</ul>)}
       </div>
     )
   }
